@@ -7,10 +7,20 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+} */
+@font-face {
+  font-family: "CormorantUpright-Regular";
+  src: url("./font/CormorantUpright-Regular.ttf");
+}
+
+.font-consultora {
+  font-family: "CormorantUpright-Regular";
+  font-weight: 600;
+  font-size: 2.5rem;
 }
 
 .App-header {
