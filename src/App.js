@@ -12,8 +12,8 @@ function App() {
         </p>
         <a
           className="App-link "
-          href="#"
-          //target="_blank"
+          href="/#"
+          target="_blank"
           rel="noopener noreferrer"
         >
           Ingresar
