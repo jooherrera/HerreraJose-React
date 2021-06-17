@@ -1,14 +1,19 @@
 // import logo from './logo.svg';
 import logo from './images/index/logo.png' 
 import './App.css';
+let name = "Candela Herrera"
+
+const styles = {
+  color : "red"
+}
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p className="font-consultora">
-          Consultora : Candela Herrera
+        <p style={styles}>
+          Consultora : {name}
         </p>
         <a
           className="App-link "
