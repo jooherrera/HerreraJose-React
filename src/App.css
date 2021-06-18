@@ -1,48 +1,60 @@
 .App {
   text-align: center;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  
 }
+  .fontConsultora {
+    color : black;
+    font-family: "CormorantUpright-Regular";
+    font-size : calc(10px + 4vmin);
+    font-weight: bold;
+  }
+
 
 .App-logo {
+  margin-top: 20px;
   height: 40vmin;
   pointer-events: none;
+  
 }
 
-/* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+
+ @media (prefers-reduced-motion: no-preference) {
+  .anim{
+    animation: App-logo-spin infinite 2s linear;
+    animation-direction : alternate-reverse;
   }
-} */
+} 
 @font-face {
   font-family: "CormorantUpright-Regular";
   src: url("./font/CormorantUpright-Regular.ttf");
 }
 
-.font-consultora {
-  font-family: "CormorantUpright-Regular";
-  font-weight: 600;
-  font-size: 2.5rem;
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+
+  background-color: rgba(196, 196, 196, .5);
+  flex: 1;
   font-size: calc(10px + 2vmin);
-  color: red; 
 }
 
 .App-link {
-  color: #61dafb;
+  color: black;
 }
 
 @keyframes App-logo-spin {
   from {
-    transform: rotate(0deg);
+    /* transform: rotate(0deg); */
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    /* transform: rotate(360deg); */
+    opacity: 1;
   }
 }
