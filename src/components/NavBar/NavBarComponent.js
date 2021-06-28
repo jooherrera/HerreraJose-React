@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import CartWidget from "../CartWidget/CartWidget";
 
+import {Link} from "react-router-dom";
 
 class NavBarComponent extends React.Component {
   render() {
@@ -12,13 +13,12 @@ class NavBarComponent extends React.Component {
       <>
       <div className="">
         <Navbar className="customColor" expand="lg">
-          <Navbar.Brand href="#home" className="text-dark">CH</Navbar.Brand>
+          <Navbar.Brand><Link className="link" to="/">CH</Link> </Navbar.Brand>
            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse  id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Nav.Link href="#home" className="text-dark"   >Home</Nav.Link>
-            <Nav.Link href="#carrito"><CartWidget /></Nav.Link>
-            <Nav.Link href="#entrega" className="text-dark">Formas de entrega</Nav.Link>
+            <Link className="link p-2" to="/cart"><CartWidget /></Link>
+            <Link className="link p-2" to="/envio">Formas de entrega</Link>
           </Nav>
           </Navbar.Collapse>
         </Navbar>

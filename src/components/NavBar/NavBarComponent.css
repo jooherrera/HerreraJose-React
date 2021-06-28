@@ -1,3 +1,17 @@
 .customColor {
   background: linear-gradient(180deg, rgba(250,163,27,1) 0%, rgba(243,107,36,1) 100%);
 }
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.link{
+  margin: 0px 20px;
+}

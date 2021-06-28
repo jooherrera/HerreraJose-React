@@ -1,23 +1,29 @@
 // import logo from './logo.svg';
-// import logo from './images/index/logo.png' 
-import './App.css';
-import NavBar from './components/NavBar/NavBarComponent';
-import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-import logo from './images/index/logo.png'
+// import logo from './images/index/logo.png'
+import "./App.css";
+import NavBar from "./components/NavBar/NavBarComponent";
+
+// import CategoryListContainer from './components/CategoryListContainer/CategoryListContainer';
+
+//React Router Dom
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+
+import Home from "./pages/Home";
+import Category from "./pages/Category";
+import ItemDetail from "./pages/ItemDetail";
 
 function App() {
-  const clientName = "Jose Herrera"
   return (
-    
-    <div className="App">
+    <Router>
+      <div className="App">
         <NavBar />
-      <div className="App-header">
-        <img src={logo} alt="logo" className="mt-5"/>
-        <h1 className="fontConsultora anim">Consultora Natura</h1>
-        <ItemListContainer greeting={clientName}/>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/category/:id" component={Category} />
+          <Route path="/producto/:categoria/:id" component={ItemDetail} />
+        </Switch>
       </div>
-     
-    </div>
+    </Router>
   );
 }
 

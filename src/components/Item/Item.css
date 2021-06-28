@@ -1,0 +1,12 @@
+.item:hover{
+  box-shadow: 6px 10px 19px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 6px 10px 19px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 10px 19px 0px rgba(0,0,0,0.75);
+  transition: .3s all;
+}
+
+.item {
+
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
