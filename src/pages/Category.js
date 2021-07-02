@@ -8,6 +8,7 @@ import {direccion} from '../api.js'
 
 const Category = ({ match }) => {
   let prodID = match.params.id;
+  console.log(match)
   const [productos, setProductos] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
@@ -41,6 +42,7 @@ const Category = ({ match }) => {
 
   return !isLoading ? (
     <div>
+      <p>Volver a | <Link to="/"  className="font-weight-bold">Home</Link></p>
       <h1 className ="category_font mt-4">Lista de {prodID} </h1>
       <div className="category_carrouselList">
         {productos.map((producto,idx) => {

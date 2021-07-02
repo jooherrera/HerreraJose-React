@@ -4,10 +4,12 @@ import axios from "axios";
 import "./ItemDetail.css";
 import EmptyItem from "../components/EmptyItem/EmptyItem";
 import {direccion} from '../api.js'
+import {Link} from 'react-router-dom'
 
 const ItemDetail = ({ match }) => {
   let prodCategoria = match.params.categoria;
   let prodID = match.params.id;
+
   const [producto, setProducto] = useState([]);
   const [isLoading, setLoading] = useState(true);
  
@@ -40,6 +42,7 @@ const ItemDetail = ({ match }) => {
     {producto.map((item, idx) => {
       return (
         <>
+          <p>Volver a | <Link to="/" className="font-weight-bold"> Home</Link> &gt;&gt; <Link to={`/category/${prodCategoria}`}  className="font-weight-bold"> {prodCategoria}</Link></p>
           <h1 key={item + idx} className="ItemDetail_font mt-4">{item.title}</h1>
           <div key={idx + 1} className="p-2 ItemDetail">
             <Item item={item} isItem={true} />
