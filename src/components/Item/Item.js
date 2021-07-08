@@ -2,9 +2,6 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import './Item.css'
 
-
-import { ItemCount } from "../ItemCount/ItemCount";
-
 const Item = ({ item, isItem }) => {
   return isItem ? (
     <>
@@ -18,8 +15,8 @@ const Item = ({ item, isItem }) => {
           <Card.Subtitle className="mb-2 text-muted">
             ${item.price}
           </Card.Subtitle>
-          <ItemCount cantidad={item.stock} />
-        </Card.Body>
+
+        </Card.Body> 
       </Card>
     </div>
   </>

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext,useState, useEffect } from "react";
 import Item from "../components/Item/Item";
 import axios from "axios";
 import "./ItemDetail.css";
 import EmptyItem from "../components/EmptyItem/EmptyItem";
-import {direccion} from '../api.js'
 import {Link} from 'react-router-dom'
+import { CartContext } from "../context/CartContext";
+import { ItemCount } from "../components/ItemCount/ItemCount";
+
 
 const ItemDetail = ({ match }) => {
   let prodCategoria = match.params.categoria;
@@ -12,11 +14,16 @@ const ItemDetail = ({ match }) => {
 
   const [producto, setProducto] = useState([]);
   const [isLoading, setLoading] = useState(true);
- 
+  const {itemsCart} = useContext(CartContext)
+
+
+  // console.log(items)
+
+
 
   useEffect(() => {
     setTimeout(() => {
-      axios(direccion).then(
+      axios(process.env.REACT_APP_BASE_URL).then(
         (res) => {
           let filter = res.data.filter((elem) => elem.title === prodCategoria);
           let mapeado = filter.map((element) => element.productos).flat();
@@ -38,20 +45,34 @@ const ItemDetail = ({ match }) => {
    </div>
   ):
   (
-    <div>
+    <>
     {producto.map((item, idx) => {
       return (
-        <>
+        <div key={idx}>
           <p>Volver a | <Link to="/" className="font-weight-bold"> Home</Link> &gt;&gt; <Link to={`/category/${prodCategoria}`}  className="font-weight-bold"> {prodCategoria}</Link></p>
-          <h1 key={item + idx} className="ItemDetail_font mt-4">{item.title}</h1>
-          <div key={idx + 1} className="p-2 ItemDetail">
-            <Item item={item} isItem={true} />
+          <h1  className="ItemDetail_font mt-4">{item.title}</h1>
+          <div  className="p-2 ItemDetail">
+            <Item item={item} isItem={true} />   
+
+            <div>
+            <ItemCount data={item}/> 
+            
+            {itemsCart.length !== 0 ? <>
+             <Link to="/cart" className="button btn-terminar"> Terminar mi compra</Link> 
+             
+
+
+             
+             </>
+             : null}
+            </div>  
+
           </div>
-        </>
+          </div>
       );
     })}
-  </div>
+  </>
   )
 };
-
 export default ItemDetail;
+

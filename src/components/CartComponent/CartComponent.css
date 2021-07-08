@@ -1,0 +1,16 @@
+.CartComponent-Container {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 20px;
+
+}
+
+.CartDetail {
+  height: min-content;
+  width: 400px;
+}
+
+button {
+  
+  height: 100px;
+}

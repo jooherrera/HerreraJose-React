@@ -7,8 +7,10 @@ import CartWidget from "../CartWidget/CartWidget";
 
 import {Link} from "react-router-dom";
 
-class NavBarComponent extends React.Component {
-  render() {
+
+const NavBarComponent = () => {
+ 
+
     return (
       <>
       <div className="">
@@ -25,7 +27,7 @@ class NavBarComponent extends React.Component {
       </div>
       </>
     );
-  }
+  
 }
 
 export default NavBarComponent;

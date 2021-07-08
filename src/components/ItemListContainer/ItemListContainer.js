@@ -40,11 +40,6 @@ const promise = () => {
                   "stock":6
                 },
                 {
-                  "id":14,
-                  "title":"kitVecwNDM",
-                  "views":95
-                },
-                {
                   "id":5,
                   "title":"Todo Dia",
                   "price":850,
@@ -79,18 +74,18 @@ const promise = () => {
               "title":"Cremas",
               "productos":[
                 {
-                  "id":1,
+                  "id":9,
                   "title":"Ekos Castanha",
                   "price":256,
                   "pictureURL":"https://i.ibb.co/3R4CXD2/ekos-Castanha.png",
                   "stock":3
                 },
                 {
-                  "id":1,
-                  "title":"Ekos Castanha",
-                  "price":256,
+                  "id":10,
+                  "title":"Ekos Maracuja",
+                  "price":5233,
                   "pictureURL":"https://i.ibb.co/GJ9kb4T/ekos-Maracuja.png",
-                  "stock":3
+                  "stock":1
                 }
               ],
               "pictureURL":"https://i.ibb.co/xYQfF4N/essencial-Exclusivo.png"

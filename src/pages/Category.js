@@ -4,18 +4,17 @@ import Item from "../components/Item/Item";
 import './Category.css'
 import {Link} from 'react-router-dom'
 import EmptyItem from "../components/EmptyItem/EmptyItem";
-import {direccion} from '../api.js'
+
 
 const Category = ({ match }) => {
   let prodID = match.params.id;
-  console.log(match)
   const [productos, setProductos] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     
     setTimeout(()=> {
-      axios(direccion).then(
+      axios(process.env.REACT_APP_BASE_URL).then(
         (res) => {
           let filter = res.data.filter((elem) => elem.title === prodID);
           let mapeado = filter.map((element) => element.productos);
@@ -37,7 +36,6 @@ const Category = ({ match }) => {
   }, [prodID]);
 
   
-  
    
 
   return !isLoading ? (
@@ -47,8 +45,8 @@ const Category = ({ match }) => {
       <div className="category_carrouselList">
         {productos.map((producto,idx) => {
           return (
-            <div key={idx+1} className="p-2">
-            <Link to={`/producto/${prodID}/${idx+1}`}>
+            <div key={producto.id} className="p-2">
+            <Link to={`/producto/${prodID}/${producto.id}`}>
               <Item item={producto} isItem={false} />
             </Link>
             </div>
