@@ -1,9 +1,10 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [itemsCart, setItemsCart] = useState([]);
+  const [total, setTotal] = useState(0);
 
   const getFromCart = (id) => {
     return itemsCart.find((obj) => obj.id === id);
@@ -24,8 +25,21 @@ export const CartProvider = ({ children }) => {
     } else {
       setItemsCart((itemsCart) => [...itemsCart, { ...item, quantity }]);
     }
+   
   };
 
+  const getTotal = (itemsCart) => {
+    const totalPlata = itemsCart.reduce((acc,el) => {
+      return acc += el.quantity * el.price
+    },0)
+    setTotal(totalPlata)
+  }
+
+
+  
+
+  // console.log(getTotal(itemsCart))
+  
   //Eliminar un item mediante su id
   const removeItem = (evn) => {
     setItemsCart((itemsCart) =>
@@ -38,8 +52,18 @@ export const CartProvider = ({ children }) => {
     setItemsCart([]);
   };
 
+
+
+
+  useEffect(() => {
+    getTotal(itemsCart)
+  }, [itemsCart])
+
+
+
+
   return (
-    <CartContext.Provider value={{ addItem, removeItem, clear, itemsCart }}>
+    <CartContext.Provider value={{ addItem, removeItem, clear, itemsCart, total }}>
       {children}
     </CartContext.Provider>
   );

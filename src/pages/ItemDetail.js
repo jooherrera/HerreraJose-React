@@ -1,12 +1,12 @@
-import React, { useContext,useState, useEffect } from "react";
+import React, { useContext,useState, useEffect, useCallback } from "react";
 import Item from "../components/Item/Item";
-import axios from "axios";
+
 import "./ItemDetail.css";
 import EmptyItem from "../components/EmptyItem/EmptyItem";
 import {Link} from 'react-router-dom'
 import { CartContext } from "../context/CartContext";
 import { ItemCount } from "../components/ItemCount/ItemCount";
-
+import { db } from "../firebase";
 
 const ItemDetail = ({ match }) => {
   let prodCategoria = match.params.categoria;
@@ -17,24 +17,38 @@ const ItemDetail = ({ match }) => {
   const {itemsCart} = useContext(CartContext)
 
 
-  // console.log(items)
 
+  const getProducts = useCallback(() => {
+    const docs = []
+      db.collection('Productos').onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+           docs.push({...doc.data()})
+        })
+        // console.log(docs)
+        let filter = docs.filter((elem) => elem.title === prodCategoria);
+        let mapeado = filter.map((element) => element.productos).flat();
+        let mapeadoID = mapeado.filter((ele) => ele.id === Number(prodID));
+        
+
+         setProducto(mapeadoID)
+      })
+
+  },[prodCategoria, prodID])
 
 
   useEffect(() => {
     setTimeout(() => {
-      axios(process.env.REACT_APP_BASE_URL).then(
-        (res) => {
-          let filter = res.data.filter((elem) => elem.title === prodCategoria);
-          let mapeado = filter.map((element) => element.productos).flat();
-          let mapeadoID = mapeado.filter((ele) => ele.id === Number(prodID));
-
-          return setProducto(mapeadoID);
-        }
-      );
+      getProducts()
       setLoading(false);
     }, 3000);
-  }, [prodCategoria, prodID]);
+  }, [getProducts]);
+
+
+
+
+
+
+
 
   return isLoading ? (
    <div key={0}>

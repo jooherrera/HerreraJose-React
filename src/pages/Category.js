@@ -1,28 +1,48 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect, useCallback } from "react";
 import Item from "../components/Item/Item";
 import './Category.css'
 import {Link} from 'react-router-dom'
 import EmptyItem from "../components/EmptyItem/EmptyItem";
 
+import { db } from "../firebase";
 
 const Category = ({ match }) => {
   let prodID = match.params.id;
   const [productos, setProductos] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
+
+  const getProducts = useCallback(() => {
+    const docs = []
+      db.collection('Productos').onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+           docs.push({...doc.data()})
+        })
+        // console.log(docs)
+        let filter = docs.filter((elem) => elem.title === prodID);
+         let mapeado = filter.map((element) => element.productos);
+        
+
+         setProductos(mapeado.flat())
+      })
+
+  },[prodID])
+
+
+
+
+
+
+
+
+
+
+
+
   useEffect(() => {
-    
     setTimeout(()=> {
-      axios(process.env.REACT_APP_BASE_URL).then(
-        (res) => {
-          let filter = res.data.filter((elem) => elem.title === prodID);
-          let mapeado = filter.map((element) => element.productos);
-  
-          return setProductos(mapeado.flat());
-        }
-      );
-      setLoading(false)
+    getProducts()
+    setLoading(false)
    
    
    
@@ -33,7 +53,7 @@ const Category = ({ match }) => {
 
 
 
-  }, [prodID]);
+  }, [getProducts]);
 
   
    
