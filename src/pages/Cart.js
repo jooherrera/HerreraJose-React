@@ -9,7 +9,7 @@ const Cart = () => {
   const {itemsCart} = useContext(CartContext)
 
   return (
-    <div>
+    <div className='d-flex flex-column align-items-center'>
         {itemsCart.length > 0 ?
          <CartComponent /> 
          :

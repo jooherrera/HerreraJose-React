@@ -9,6 +9,7 @@ import ItemDetail from "./pages/ItemDetail";
 //Context
 import {CartProvider} from './context/CartContext'
 import Cart from "./pages/Cart";
+import Envios from "./pages/Envios";
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/category/:id" component={Category} />
           <Route path="/producto/:categoria/:id" component={ItemDetail} />
           <Route path="/cart" component={Cart} />
+          <Route path="/envio" component={Envios} />
         </Switch>
       </div>
       </CartProvider>
