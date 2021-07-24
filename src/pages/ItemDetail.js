@@ -1,4 +1,4 @@
-import React, { useContext,useState, useEffect, useCallback } from "react";
+import React, { useContext,useState, useEffect } from "react";
 import Item from "../components/Item/Item";
 
 import "./ItemDetail.css";
@@ -14,34 +14,35 @@ const ItemDetail = ({ match }) => {
 
   const [producto, setProducto] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const {itemsCart} = useContext(CartContext)
-
-
-
-  const getProducts = useCallback(() => {
-    const docs = []
-      db.collection('Productos').onSnapshot((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-           docs.push({...doc.data()})
-        })
-        // console.log(docs)
-        let filter = docs.filter((elem) => elem.title === prodCategoria);
-        let mapeado = filter.map((element) => element.productos).flat();
-        let mapeadoID = mapeado.filter((ele) => ele.id === Number(prodID));
-        
-
-         setProducto(mapeadoID)
-      })
-
-  },[prodCategoria, prodID])
+  const {itemsCart,setCategory} = useContext(CartContext)
+  const [cant , setCant ] = useState(0)
+ 
 
 
   useEffect(() => {
-    setTimeout(() => {
-      getProducts()
+
+    const unSub = db.collection('Productos').doc(prodCategoria).onSnapshot((querySnapshot) => {
+      const docs = []
+      const produc = querySnapshot.data()["productos"]
+      // for (let producto in produc){
+        docs.push({...produc[prodID], origen : prodID})
+        
+      // }
+
+      setProducto(docs)
+      setCategory(prodCategoria)
       setLoading(false);
-    }, 3000);
-  }, [getProducts]);
+      console.log(docs)
+   })
+    
+
+      
+      
+
+    return () => unSub()
+
+
+  }, [prodCategoria,prodID,setCategory]);
 
 
 
@@ -69,7 +70,7 @@ const ItemDetail = ({ match }) => {
             <Item item={item} isItem={true} />   
 
             <div>
-            <ItemCount data={item}/> 
+            <ItemCount data={item} datos={cant} funcCant={setCant}/> 
             
             {itemsCart.length !== 0 ? <>
              <Link to="/cart" className="button btn-terminar"> Terminar mi compra</Link> 

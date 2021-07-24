@@ -5,6 +5,7 @@ import { CartContext } from "../../context/CartContext";
 import CartDetail from "../CartDetail/CartDetail";
 import Item from "../Item/Item";
 import "./CartComponent.css";
+import {Link} from 'react-router-dom'
 
 const CartComponent = () => {
   const { itemsCart, clear, removeItem } = useContext(CartContext);
@@ -30,7 +31,10 @@ const CartComponent = () => {
       })}
 
       {itemsCart.length > 0 && (
+        <>
         <button onClick={clear}>Eliminar Carrito</button>
+        <Link to="/confirmCart" className="button btn-terminar"> Comprar Ahora!</Link> 
+        </>
       )}
     </div>
   );

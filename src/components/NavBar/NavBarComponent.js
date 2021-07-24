@@ -13,6 +13,10 @@ import {CartContext} from '../../context/CartContext'
 const NavBarComponent = () => {
   const {itemsCart , total} = useContext(CartContext)
 
+
+
+
+
     return (
       <>
       <div className="">

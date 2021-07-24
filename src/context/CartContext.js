@@ -3,8 +3,24 @@ import React, { createContext, useState, useEffect } from "react";
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+
+  let s = {
+    Cremas : {
+
+    },
+    Perfumes : {
+
+    }
+  }
+
+
   const [itemsCart, setItemsCart] = useState([]);
+  const [itemsActualizar, setItemsActualizar] = useState(s)
   const [total, setTotal] = useState(0);
+  const [category, setCategory] = useState('')
+  const [itemsComprados, setItemsComprados] = useState([])
+
+
 
   const getFromCart = (id) => {
     return itemsCart.find((obj) => obj.id === id);
@@ -14,18 +30,43 @@ export const CartProvider = ({ children }) => {
     return id === undefined ? undefined : getFromCart(id) !== undefined;
   };
 
-  const addItem = (item, quantity) => {
+
+
+
+
+  const addItem = (item, quantity, origen) => {
+    const a = {
+      stock : item.stock - quantity ,   
+   }             
+
+   const b = {
+     id : item.id,
+     price : item.price,
+     title : item.title,
+     quantity : quantity
+   }
+
+
     if (isInCart(item.id)) {
       const newCart = itemsCart.map((cartItem) => {
         if (cartItem.id === item.id) {
-          return { ...cartItem, quantity: cartItem.quantity + quantity };
+                    
+          return { ...cartItem, quantity:  quantity };
         } else return cartItem;
       });
       setItemsCart(newCart);
     } else {
       setItemsCart((itemsCart) => [...itemsCart, { ...item, quantity }]);
+    
+     
+      
+      setItemsComprados((items) => [...items, b])
+
+       setItemsActualizar((prevState) => ({
+         ...prevState, [category] : {...prevState[category], [origen] : a}
+       }))
     }
-   
+    
   };
 
   const getTotal = (itemsCart) => {
@@ -57,13 +98,14 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     getTotal(itemsCart)
+
   }, [itemsCart])
 
 
 
 
   return (
-    <CartContext.Provider value={{ addItem, removeItem, clear, itemsCart, total }}>
+    <CartContext.Provider value={{ addItem, removeItem, clear, itemsCart, total, setCategory,itemsActualizar,itemsComprados,setItemsComprados }}>
       {children}
     </CartContext.Provider>
   );

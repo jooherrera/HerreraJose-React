@@ -11,23 +11,26 @@ function ItemListContainer({isItem}) {
   const [isLoading, setLoading] = useState(true);
 
 
-  const getProducts = () => {
-    const docs = []
-      db.collection('Productos').onSnapshot((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-           docs.push({...doc.data()})
-        })
-        setProductState(docs)
-      })
-
-  }
 
 
   useEffect(()=>{
-    getProducts()
-    setTimeout(()=> {
+   
+    const docs = []
+    const unSub = db.collection('Productos').onSnapshot((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+         docs.push({...doc.data()})
+      })
+      setProductState(docs)
       setLoading(false)
-    },2000)
+    })
+     
+
+    
+  
+    
+
+    return () => unSub()
+
   },[])
 
   return isLoading ? (
