@@ -24,7 +24,7 @@ En el dictectorio del proyecto
 
 ![2021-07-25 13-15-33_Trim](https://user-images.githubusercontent.com/74759684/126907696-2d34ce1d-c152-43d5-8c21-9a40712a6230.gif)
 
-### Estando en la sección del carrito, se puede eleminar este, completamente o por producto. 
+### Estando en la sección del carrito, se puede eliminar este, completamente o por producto. 
 
 ![2021-07-25 13-16-04](https://user-images.githubusercontent.com/74759684/126907772-3499bdd3-1326-4a99-98dd-3853f35b0f65.gif)
 
