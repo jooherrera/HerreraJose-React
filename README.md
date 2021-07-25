@@ -31,7 +31,7 @@ En el dictectorio del proyecto
 ### Al momento de comprar, se le pide al usuario que complete con sus datos para habilitar la compra.
 ![2021-07-25 13-16-13_Trim](https://user-images.githubusercontent.com/74759684/126907893-3e42e47f-ac38-4412-902b-b35176414e49.gif)
 
-# Librerías utilizadas. 
+# Herramientas utilizadas. 
 
 ## React ( Interfaz de usuario )
 
