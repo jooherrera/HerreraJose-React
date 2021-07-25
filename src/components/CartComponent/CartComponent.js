@@ -1,7 +1,6 @@
 import React from "react";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-
 import CartDetail from "../CartDetail/CartDetail";
 import Item from "../Item/Item";
 import "./CartComponent.css";
@@ -12,7 +11,6 @@ const CartComponent = () => {
 
   return (
     <div>
-      {console.log(itemsCart)}
       {itemsCart.map((producto) => {
         return (
           <div key={producto.id} className="CartComponent-Container">

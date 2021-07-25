@@ -5,7 +5,6 @@ import './Item.css'
 const Item = ({ item, isItem }) => {
   return isItem ? (
     <>
-  
     <div className="item">
       <Card style={{ width: "18rem" }}>
         <Card.Img variant="top" src={item.pictureURL} alt="item" width="30px" />

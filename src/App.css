@@ -1,16 +1,11 @@
-body,html{
-  /* background-color: rgba(196, 196, 196, 1); */
-
-}
+body,html{}
 
 .App {
   text-align: center;
   height: 100%;
   width: 100%;
-  /* background-color: rgba(196, 196, 196, 1); */
   display: flex;
-  flex-direction: column;
-  
+  flex-direction: column; 
 }
   .fontConsultora {
     color : black;
@@ -24,9 +19,7 @@ body,html{
   margin-top: 20px;
   height: 40vmin;
   pointer-events: none;
-  
 }
-
 
  @media (prefers-reduced-motion: no-preference) {
   .anim{
@@ -54,11 +47,9 @@ body,html{
 
 @keyframes App-logo-spin {
   from {
-    /* transform: rotate(0deg); */
     opacity: 0;
   }
   to {
-    /* transform: rotate(360deg); */
     opacity: 1;
   }
 }

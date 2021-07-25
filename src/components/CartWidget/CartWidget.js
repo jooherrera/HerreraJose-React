@@ -8,7 +8,6 @@ function CartWidget() {
   const {itemsCart} = useContext(CartContext)
   return (
     <div >
-      {/* <span>{itemsCart.length}</span> */}
       <span>{itemsCart.reduce((acc,el) => {
        return acc += el.quantity
       },0)}</span> 
