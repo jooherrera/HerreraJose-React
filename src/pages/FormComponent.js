@@ -3,6 +3,8 @@ import { Form, FormGroup, Label, Input } from "reactstrap";
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import "./FormComponent.css";
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 
 const FormComponent = ({ addBuyer, actualizarStock }) => {
   const { itemsActualizar, clear, total, itemsComprados, setItemsComprados } =
@@ -48,11 +50,12 @@ const FormComponent = ({ addBuyer, actualizarStock }) => {
   };
 
   const getFecha = () => {
-    let n = new Date();
-    let y = n.getFullYear();
-    let m = n.getMonth() + 1;
-    let d = n.getDate();
-    const date = `${d}/${m}/${y}`;
+    // let n = new Date();
+    // let y = n.getFullYear();
+    // let m = n.getMonth() + 1;
+    // let d = n.getDate();
+    // const date = `${d}/${m}/${y}`;
+    const date = firebase.firestore.Timestamp.fromDate(new Date())
     setBuyer((prevState) => ({
       ...prevState,
       date: date,
